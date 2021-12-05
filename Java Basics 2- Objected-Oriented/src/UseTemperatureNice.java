@@ -12,8 +12,7 @@ public class UseTemperatureNice {
  temp = new TemperatureNice(TempScale.CELSIUS);
  temp.display();
  
- temp = new TemperatureNice(2.73,
- TempScale.KELVIN);
+ temp = new TemperatureNice(2.73, TempScale.KELVIN);
  temp.display();
  }
 }
