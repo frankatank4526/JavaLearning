@@ -48,12 +48,14 @@ public KeepTrackOfWork() {
 	// Stop Button actionListener, stops time count
 	Stopper.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-	// TODO: Add functionality to add worked hours to timePassed in userInfo & store that data somewhere ****		
+	// TODO: Add functionality to add worked hours to timePassed in userInfo & store that data somewhere ****	
+			
+	
 	WorkTracker.TimeStop(System.currentTimeMillis());
 	newUser.addTime(WorkTracker.getTimeElapsedLong());
 	
 	timeElapsed.setText(newUser.name + " has worked for " + "a total of " + newUser.getTimePassedInt() + 
-			"seconds." + "That is " + WorkTracker.getTimeElapsedInHours() + " hours." );
+			"seconds." + "That is " + newUser.timePassedHours() + " hours." );
 		}
 	});
 	

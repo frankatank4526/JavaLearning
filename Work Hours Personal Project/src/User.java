@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class User {
 public String name;
@@ -28,6 +29,12 @@ public double getTimePassedInt() {
 	int timePassedInt = (int)timePassed;
 	return timePassedInt;
 }
-
+public String timePassedHours() {
+	DecimalFormat decFormat = new DecimalFormat();
+	decFormat.setMaximumIntegerDigits(10);
+	decFormat.setMaximumFractionDigits(3);
+	decFormat.setMinimumFractionDigits(3);
+	return decFormat.format(timePassed/3600);
+}
 
 }
