@@ -17,19 +17,21 @@ public KeepTrackOfWork() {
 	JLabel userNameHere = new JLabel("Type your name here and press enter");
 	//WorkTracker keepTrack = new WorkTracker();
 	User newUser = new User("");
-	timeElapsed.setBounds(50,50,200,20);
+	timeElapsed.setBounds(15,50,300,20);
 	Starter.setBounds(50,100,95,30);
 	Stopper.setBounds(160, 100, 95, 30);
-	userInfo.setBounds(100, 200, 100, 20);
+	userInfo.setBounds(100, 200, 200, 20);
 	userNameHere.setBounds(80, 230 ,300,50);
 	
 	userInfo.addActionListener(new ActionListener() {
 		// userInfo Text field action listener, gets input for userName
+		//TODO: password functionality, add textField and JButton; Upon clicking JButton, read & check
+		// username & password matches.
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			newUser.name = userInfo.getText();
+			userNameHere.setText(newUser.name + " has Logged in!");
 			
-			userInfo.setText(newUser.name + " has Logged in!");
 		}
 		
 	});
@@ -46,9 +48,11 @@ public KeepTrackOfWork() {
 	// Stop Button actionListener, stops time count
 	Stopper.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			
+	// TODO: Add functionality to add worked hours to timePassed in userInfo & store that data somewhere ****		
 	WorkTracker.TimeStop(System.currentTimeMillis());
-	timeElapsed.setText(newUser.name + " has worked for " + "a total of " + WorkTracker.getTimeElapsed() + 
+	newUser.addTime(WorkTracker.getTimeElapsedLong());
+	
+	timeElapsed.setText(newUser.name + " has worked for " + "a total of " + newUser.getTimePassedInt() + 
 			"seconds." + "That is " + WorkTracker.getTimeElapsedInHours() + " hours." );
 		}
 	});

@@ -8,12 +8,8 @@ private boolean clockedIn = false;
 public User(String name) {
 	this.name = name;
 }
-/*
-public User(String name, double timePassed) {
-	this.name = name;
-	this.timePassed = timePassed;
-}
-*/
+
+//TODO: add password functionality 
 public void addTime(double timeAdded) {
 	timePassed += timeAdded;
 
@@ -27,8 +23,10 @@ public void clockOut() {
 public boolean getClockInStatus() {
 	return clockedIn;
 }
-public double getTimePassed() {
-	return timePassed;
+public double getTimePassedInt() {
+	//convert double to int
+	int timePassedInt = (int)timePassed;
+	return timePassedInt;
 }
 
 

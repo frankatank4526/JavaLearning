@@ -23,8 +23,10 @@ public static void TimeStop(long stoppedTime) {
 public static String getTimeElapsed() {
 	return decFormat.format(stopTime - startTime);
 }
-
+public static long getTimeElapsedLong() {
+	return stopTime - startTime;
+}
 public static String getTimeElapsedInHours() {
-	return decFormat.format((stopTime - startTime)/24);
+	return decFormat.format((stopTime - startTime)/60/60);
 }
 }
