@@ -3,21 +3,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 @SuppressWarnings("serial")
 public class KeepTrackOfWork extends JFrame{
 public KeepTrackOfWork() {
+	
 	//initializes all panel objects 
 	JFrame frame = new JFrame("Work Tracker");
 	JButton Starter = new JButton("Start");
 	JButton Stopper = new JButton("Stop");
-	JTextField timeElapsed = new JTextField();
+	//use JTextArea for multiple lines
+	JTextArea timeElapsed = new JTextArea();
 	JTextField userInfo = new JTextField();
 	JLabel userNameHere = new JLabel("Type your name here and press enter");
 	//WorkTracker keepTrack = new WorkTracker();
 	User newUser = new User("");
-	timeElapsed.setBounds(15,50,300,20);
+	timeElapsed.setBounds(15,50,300,50);
+	//lets java auto wrap multiple lines 
+	timeElapsed.setLineWrap(true);
+	//makes the text in fields not editable by user
+	timeElapsed.setEditable(false);
 	Starter.setBounds(50,100,95,30);
 	Stopper.setBounds(160, 100, 95, 30);
 	userInfo.setBounds(100, 200, 200, 20);
@@ -39,9 +46,12 @@ public KeepTrackOfWork() {
 	// Start Button actionListener, starts time count
 	Starter.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			
-			timeElapsed.setText("Counting!");
+			if(newUser.getClockInStatus () == false) {
+			newUser.clockIn();
 			WorkTracker.TimeStart(System.currentTimeMillis());
+			}
+			timeElapsed.setText("Counting!");
+			
 		}
 	});
 	
@@ -49,13 +59,15 @@ public KeepTrackOfWork() {
 	Stopper.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 	// TODO: Add functionality to add worked hours to timePassed in userInfo & store that data somewhere ****	
-			
+	if(newUser.getClockInStatus() == true) {
+		newUser.clockOut();
+		WorkTracker.TimeStop(System.currentTimeMillis());
+		newUser.addTime(WorkTracker.getTimeElapsedLong());
+	}
 	
-	WorkTracker.TimeStop(System.currentTimeMillis());
-	newUser.addTime(WorkTracker.getTimeElapsedLong());
 	
-	timeElapsed.setText(newUser.name + " has worked for " + "a total of " + newUser.getTimePassedInt() + 
-			"seconds." + "That is " + newUser.timePassedHours() + " hours." );
+	
+	timeElapsed.setText(newUser.name + " has worked for " + newUser.timePassedTotal(newUser.getTimePassedInt()) );
 		}
 	});
 	

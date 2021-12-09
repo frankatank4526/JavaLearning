@@ -1,5 +1,6 @@
 import java.text.DecimalFormat;
-
+// TODO: Make the functions in this class applicable to a user; needs to
+// eventually be able to track start and stop times for individual users. 
 public class WorkTracker {
 
 public static long startTime = 0;
@@ -29,6 +30,8 @@ public static long getTimeElapsedLong() {
 	return stopTime - startTime;
 }
 public static String getTimeElapsedInHours() {
+	
+	//raw amount of hours in decimal format below (old code)
 	return decFormat.format((stopTime - startTime)/3600);
 }
 }

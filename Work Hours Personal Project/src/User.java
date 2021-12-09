@@ -24,7 +24,7 @@ public void clockOut() {
 public boolean getClockInStatus() {
 	return clockedIn;
 }
-public double getTimePassedInt() {
+public int getTimePassedInt() {
 	//convert double to int
 	int timePassedInt = (int)timePassed;
 	return timePassedInt;
@@ -35,6 +35,13 @@ public String timePassedHours() {
 	decFormat.setMaximumFractionDigits(3);
 	decFormat.setMinimumFractionDigits(3);
 	return decFormat.format(timePassed/3600);
+}
+public String timePassedTotal(int totalSeconds) {
+	// https://www.inchcalculator.com/convert/second-to-hour/ to convert seconds to hours, mins, and secs
+		int totalHours = totalSeconds/3600;
+		int minutesLeft =  (totalSeconds - (totalHours * 3600))/60 ;
+		int secondsLeft = totalSeconds - (minutesLeft * 60);
+		return totalHours + " hours, " + minutesLeft + " minutes, " + "and " + secondsLeft + " seconds";
 }
 
 }
