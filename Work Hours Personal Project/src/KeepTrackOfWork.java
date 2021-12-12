@@ -20,6 +20,7 @@ public KeepTrackOfWork() {
 	JLabel userNameHere = new JLabel("Type your name here and press enter");
 	//WorkTracker keepTrack = new WorkTracker();
 	User newUser = new User("");
+	String currentUsername = "";
 	timeElapsed.setBounds(15,50,300,50);
 	//lets java auto wrap multiple lines 
 	timeElapsed.setLineWrap(true);
@@ -33,10 +34,15 @@ public KeepTrackOfWork() {
 	userInfo.addActionListener(new ActionListener() {
 		// userInfo Text field action listener, gets input for userName
 		//TODO: password functionality, add textField and JButton; Upon clicking JButton, read & check
-		// username & password matches.
+		// username & password matches. 
+		// TODO: multiple users 
+		// Try having a "current User" String, and having multiple User objects 
+		// Use array to store "users," cycle thru them and match names to decide which start/stop acts on 
+		// Start out with 3 users, and use "int userNumber" to navigate thru array
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			newUser.name = userInfo.getText();
+			
 			userNameHere.setText(newUser.name + " has Logged in!");
 			
 		}
@@ -48,7 +54,7 @@ public KeepTrackOfWork() {
 		public void actionPerformed(ActionEvent e) {
 			if(newUser.getClockInStatus () == false) {
 			newUser.clockIn();
-			WorkTracker.TimeStart(System.currentTimeMillis());
+			newUser.TimeStart(System.currentTimeMillis());
 			}
 			timeElapsed.setText("Counting!");
 			
@@ -61,8 +67,8 @@ public KeepTrackOfWork() {
 	// TODO: Add functionality to add worked hours to timePassed in userInfo & store that data somewhere ****	
 	if(newUser.getClockInStatus() == true) {
 		newUser.clockOut();
-		WorkTracker.TimeStop(System.currentTimeMillis());
-		newUser.addTime(WorkTracker.getTimeElapsedLong());
+		newUser.TimeStop(System.currentTimeMillis());
+		newUser.addTime(newUser.getTimeElapsedLong());
 	}
 	
 	

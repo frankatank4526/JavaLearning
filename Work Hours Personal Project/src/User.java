@@ -4,7 +4,8 @@ public class User {
 public String name;
 private double timePassed = 0;
 private boolean clockedIn = false;
-
+public static long startTime = 0;
+public static long stopTime = 0;
 
 public User(String name) {
 	this.name = name;
@@ -29,6 +30,19 @@ public int getTimePassedInt() {
 	int timePassedInt = (int)timePassed;
 	return timePassedInt;
 }
+public void TimeStart(long pushTime) {
+	startTime = pushTime/1000;
+
+}
+public void TimeStop(long stoppedTime) {
+	stopTime = stoppedTime/1000;
+	
+}
+public long getTimeElapsedLong() {
+	return stopTime - startTime;
+}
+
+
 public String timePassedHours() {
 	DecimalFormat decFormat = new DecimalFormat();
 	decFormat.setMaximumIntegerDigits(10);
